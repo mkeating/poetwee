@@ -51,6 +51,9 @@ if(!empty($_GET['q'])){
 					}
 					
 				//ignore t.co links
+				if(strpos($tweet['text'], 'https://t.co') !== false){
+					continue;
+					}
 				if(strpos($tweet['text'], 'http://t.co') !== false){
 					continue;
 					}

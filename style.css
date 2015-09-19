@@ -1,28 +1,28 @@
-html, body, {
+html, body {
     height: 100%;
 }
 
 .container {
-    height: 100%;
+    height: inherit;
 }
 
 .row-fluid {
-    min-height: 100%;
+    height: inherit;
 }
 
 .main{
-    min-height: 100%;
+    height: inherit;
 }
 
 #search_box {
-    margin-top: 40%;
-}
-
-#search_results {
-    margin-top: 20%;
+	margin-top: 40%;
 }
 
 .carousel {
     border: 1px solid white;
     padding: 10px;
+}
+
+#search_result {
+	margin-top: 20%;
 }

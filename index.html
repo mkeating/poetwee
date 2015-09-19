@@ -29,15 +29,11 @@
 
 	$(document).ready(function($) {
 		
-		//$('#search_results').html('Write a line of poetry');
-		
 		//Run when search is clicked
 		$('#search_button').click(function() {
 
 			//progress text
 			$('#search_results').html('Searching Twitter...');
-
-			
 			
 			//get and encode input
 			var search_value = encodeURIComponent($('input[name=search_terms]').val());
@@ -46,10 +42,10 @@
 			$.ajax({
 				url: 'http://localhost:8888/search_response.php?q=' + search_value, 
 				success: function(data){
-				
-					$('#search_box').fadeOut(200);
+					
 					//$('#search_button').fadeOut(200);
 					$('#search_results').html('');
+					//$('#search_results').hide();
 					
 					//display results
 					var tweets = JSON.parse(data);
@@ -67,8 +63,6 @@
 								.appendTo(slider)
 								.html(tweets[i][e]);
 								}
-				
-					 	
 					});
 					$('.carousel').slick();
 						
@@ -76,20 +70,30 @@
 						.html('Done')
 						.attr('id', 'done_button')
 						.appendTo('#search_results')
+
+					$('#search_box').remove();
+					//$('#search_results').fadeIn(1000);
+					
 						
 					//when done is clicked
 					$('#done_button').click(function() {
 					
+						$('.carousel').fadeOut(3000);
 						var finished = "";
-						$('.carousel').each(function(){
-							var index = $(this).data('jcarousel').first - 1;
+						$('.slick-active').each(function(){
 
-							finished += $(this).data('jcarousel').container.context.children[index].innerHTML + "<br/>";
+							finished += $(this).context.innerHTML + '<br/>';
+							
 						});
 						
 						$('#search_results').html('');
-						$('<div>').html('Your brilliant poetwee:').appendTo('#search_results');
+						$('<div>').html('<h2>Your brilliant poetwee:</h2>').appendTo('#search_results');
 						$('<div>').html(finished).appendTo('#search_results');
+
+						$('<button>')
+						.html('Go again')
+						.attr({'id': 'again_button', 'onClick': 'window.location.reload()'})
+						.appendTo('#search_results')
 						
 						console.log(finished);
 					});
@@ -109,11 +113,9 @@
 					<input name='search_terms' id="search_terms" autofocus='autofocus' style='margin: 0 auto; width:100%; color: black' placeholder='Write a line of poetry...'/>
 					<button id='search_button'> Search </button>
 				</div>
-				<div id='search_results' style='margin: 0 auto; width:90%'>
+				<div id='search_results'></div>
 		</div>
 		<div class='col-md-2'></div>
-		
-		</div>
 	</div>
 
 </div>
