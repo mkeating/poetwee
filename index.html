@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+
+<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+</head>
+
+<style type="text/css">
+	body{
+		background-color: #3498db;
+		color: white;
+	}
+
+</style>
+<body>
+
+<script type="text/javascript">
+
+	$(document).ready(function($) {
+		
+		//$('#search_results').html('Write a line of poetry');
+		
+		//Run when search is clicked
+		$('#search_button').click(function() {
+
+			//progress text
+			$('#search_results').html('Searching Twitter...');
+
+			
+			
+			//get and encode input
+			var search_value = encodeURIComponent($('input[name=search_terms]').val());
+			
+			//ajax request
+			$.ajax({
+				url: 'http://localhost:8888/search_response.php?q=' + search_value, 
+				success: function(data){
+				
+					$('#search_box').fadeOut(200);
+					//$('#search_button').fadeOut(200);
+					$('#search_results').html('');
+					
+					//display results
+					var tweets = JSON.parse(data);
+					var length = tweets.length;
+
+					$.each(tweets, function(i)
+					{
+						var slider = $('<div/>')
+							.addClass('carousel')
+							.attr('id', 'word'+i)
+							.appendTo('#search_results');
+						console.log(tweets[i]);			
+						for (var e = 0; e < 10; e++){	
+							var word = $('<div/>')
+								.appendTo(slider)
+								.html(tweets[i][e]);
+								}
+				
+					 	
+					});
+					$('.carousel').slick();
+						
+					$('<button>')
+						.html('Done')
+						.attr('id', 'done_button')
+						.appendTo('#search_results')
+						
+					//when done is clicked
+					$('#done_button').click(function() {
+					
+						var finished = "";
+						$('.carousel').each(function(){
+							var index = $(this).data('jcarousel').first - 1;
+
+							finished += $(this).data('jcarousel').container.context.children[index].innerHTML + "<br/>";
+						});
+						
+						$('#search_results').html('');
+						$('<div>').html('Your brilliant poetwee:').appendTo('#search_results');
+						$('<div>').html(finished).appendTo('#search_results');
+						
+						console.log(finished);
+					});
+				}
+			})
+		})
+	});
+</script>
+
+
+
+<div class='container' > 
+	<div class='row-fluid'>
+		<div class='col-md-2'></div>
+		<div class='col-xs-12 col-md-8 main'>
+				<div id="search_box">
+					<input name='search_terms' id="search_terms" autofocus='autofocus' style='margin: 0 auto; width:100%; color: black' placeholder='Write a line of poetry...'/>
+					<button id='search_button'> Search </button>
+				</div>
+				<div id='search_results' style='margin: 0 auto; width:90%'>
+		</div>
+		<div class='col-md-2'></div>
+		
+		</div>
+	</div>
+
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
+				
+</body>
+</html>

@@ -1,0 +1,28 @@
+html, body, {
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+}
+
+.row-fluid {
+    min-height: 100%;
+}
+
+.main{
+    min-height: 100%;
+}
+
+#search_box {
+    margin-top: 40%;
+}
+
+#search_results {
+    margin-top: 20%;
+}
+
+.carousel {
+    border: 1px solid white;
+    padding: 10px;
+}
