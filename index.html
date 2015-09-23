@@ -40,7 +40,7 @@
 			
 			//ajax request
 			$.ajax({
-				url: 'http://localhost:8888/search_response.php?q=' + search_value, 
+				url: window.location.href + '/search_response.php?q=' + search_value, 
 				success: function(data){
 					
 					//$('#search_button').fadeOut(200);
