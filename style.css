@@ -1,5 +1,7 @@
 html, body {
     height: 100%;
+    background-image: url("bg-test.png");
+    background-repeat: no-repeat;
 }
 
 .container {
@@ -16,6 +18,14 @@ html, body {
 
 #search_box {
 	margin-top: 40%;
+	font-size: 2em;
+}
+
+#search_button {
+	margin-top: 20px;
+	width: 100%;
+	font-size: 1.5em;
+	
 }
 
 .carousel {
