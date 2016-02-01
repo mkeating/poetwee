@@ -33,7 +33,7 @@
 		$('#search_button').click(function() {
 
 			//progress text
-			$('#search_results').html('Searching Twitter...');
+			$('#progress').html('Searching Twitter...');
 			
 			//get and encode input
 			var search_value = encodeURIComponent($('input[name=search_terms]').val());
@@ -68,7 +68,8 @@
 						
 					$('<button>')
 						.html('Done')
-						.attr('id', 'done_button')
+						.attr({'id': 'done_button',
+								 'class': 'btn btn-default'})
 						.appendTo('#search_results')
 
 					$('#search_box').remove();
@@ -92,7 +93,9 @@
 
 						$('<button>')
 						.html('Go again')
-						.attr({'id': 'again_button', 'onClick': 'window.location.reload()'})
+						.attr({'id': 'again_button', 
+								'class': 'btn btn-default', 
+									'onClick': 'window.location.reload()'})
 						.appendTo('#search_results')
 						
 						console.log(finished);
@@ -112,6 +115,7 @@
 				<div id="search_box">
 					<input name='search_terms' id="search_terms" autofocus='autofocus' style='margin: 0 auto; width:100%; color: black' placeholder='Write a line of poetry...'/>
 					<button id='search_button' class="btn btn-default"> Search </button>
+					<div id="progress"> </div>
 				</div>
 				<div id='search_results'></div>
 		</div>
