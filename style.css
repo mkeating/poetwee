@@ -1,30 +1,32 @@
-html, body {
-    height: 100%;
+ body {
+    
     background-image: url("bg.png");
     background-repeat: no-repeat;
 }
 
-.container {
-    height: inherit;
+.container, .row-fluid, .main{
+    height: 100%;
 }
 
-.row-fluid {
-    height: inherit;
-}
 
-.main{
-    height: inherit;
+.main {
+    margin-bottom: 20px;
 }
-
 #search_box {
 	margin-top: 40%;
 	font-size: 2em;
 }
 
+
+@media screen and (max-width: 400px) {
+        #search_box {
+            margin-top: 50%;
+            font-size: 1.5em;
+        }
+    }
+
 #search_button {
-	/*margin-top: 20px;
-	width: 100%;
-	*/
+
     font-size: 1.5em;	
 }
 
