@@ -1,0 +1,53 @@
+html, body {
+    height: 100%;
+    background-image: url("bg.png");
+    background-repeat: no-repeat;
+}
+
+.container {
+    height: inherit;
+}
+
+.row-fluid {
+    height: inherit;
+}
+
+.main{
+    height: inherit;
+}
+
+#search_box {
+	margin-top: 40%;
+	font-size: 2em;
+}
+
+#search_button {
+	/*margin-top: 20px;
+	width: 100%;
+	*/
+    font-size: 1.5em;	
+}
+
+#done_button {
+    font-size: 1.5em;
+}
+
+#again_button {
+    font-size: 1.5em;
+}
+
+.btn{
+    margin-top: 20px;
+    width: 100%;
+    
+}
+
+.carousel {
+    border: 1px solid white;
+    padding: 10px;
+    background: rgba(52, 152, 219, 0.7);
+}
+
+#search_results {
+	margin-top: 20%;
+}
